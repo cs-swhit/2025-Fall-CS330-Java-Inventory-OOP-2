@@ -33,7 +33,6 @@ public class Tool extends Equippable {
     public Tool()
     {
         super();
-
         this.speed = 0;
     }
 
@@ -87,7 +86,12 @@ public class Tool extends Equippable {
     @Override
     public void read(Scanner snr)
     {
-        // Complete this method
+        super.name = snr.next();
+        super.material = snr.next();
+        super.durability = snr.nextInt();
+        this.speed = snr.nextInt();
+        this.modifier = snr.next();
+        super.modifierLevel = snr.nextInt();
     }
 
     /**
@@ -124,7 +128,9 @@ public class Tool extends Equippable {
         Tool rhsItem = (Tool) rhs;
 
         // Replace the return
-        return false;
+        return this.name.equals(rhsItem.name)
+                && this.material.equals(rhsItem.material)
+                && this.modifier.equals(rhsItem.modifier);
     }
 
     /**
@@ -135,7 +141,7 @@ public class Tool extends Equippable {
     public int hashCode()
     {
         // Replace the return
-        return -1;
+        return (this.name.hashCode() + this.material.hashCode() + this.modifier.hashCode());
     }
 
     /**
@@ -145,11 +151,13 @@ public class Tool extends Equippable {
     public String toString()
     {
         return String.join(
-            System.lineSeparator(),
-            String.format("  Refer to..."),
-            String.format("  ...solution for the..."),
-            String.format("  ...previous assignment"),
-            ""
+                System.lineSeparator(),
+                String.format("  Nme: %s", super.getName()),
+                String.format("  Dur: %s", super.getDurability()),
+                String.format("  Spd: %s", this.getSpeed()),
+                String.format("  Mtl: %s",super.getMaterial()),
+                String.format("  Mdr: %s (Lvl %d)",super.getModifier(),super.getModifierLevel()),
+                ""
         );
     }
 }

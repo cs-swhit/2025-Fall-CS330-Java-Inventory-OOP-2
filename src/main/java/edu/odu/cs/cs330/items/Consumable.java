@@ -36,7 +36,7 @@ public class Consumable extends Item {
      */
     public Consumable()
     {
-        super("[Placeholder]");
+        super("");
 
         this.effect = "";
         this.uses   = 0;
@@ -107,7 +107,9 @@ public class Consumable extends Item {
     @Override
     public void read(Scanner snr)
     {
-        // Complete this method
+        super.name = snr.next();
+        this.effect = snr.next();
+        this.uses = snr.nextInt();
     }
 
     /**
@@ -116,11 +118,10 @@ public class Consumable extends Item {
     @Override
     public Item clone()
     {
-        Consumable cpy = new Consumable();
-        
-        // Add the missing logic
+//        Consumable cpy = new Consumable();
 
-        return cpy;
+
+        return new Consumable(this);
     }
 
     /**
@@ -152,7 +153,7 @@ public class Consumable extends Item {
     public int hashCode()
     {
         // Replace the return
-        return -1;
+        return this.name.hashCode() + this.effect.hashCode();
     }
 
     /**
@@ -162,11 +163,11 @@ public class Consumable extends Item {
     public String toString()
     {
         return String.join(
-            System.lineSeparator(),
-            String.format("  Refer to..."),
-            String.format("  ...solution for the..."),
-            String.format("  ...previous assignment"),
-            ""
+                System.lineSeparator(),
+                String.format("  Nme: %s", this.getName()),
+                String.format("  Eft: %s", this.effect),
+                String.format("  Use: %d", this.uses),
+                ""
         );
     }
 }
